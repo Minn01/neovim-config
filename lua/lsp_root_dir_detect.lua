@@ -11,8 +11,9 @@ function M.Detect_root(server, util)
         return util.root_pattern("pyproject.toml", "setup.py", ".git")
     elseif server == "tsserver" or server == "ts_ls" then
         return util.root_pattern("package.json", "tsconfig.json", ".git")
+    elseif server == "omnisharp" then
+        return util.root_pattern("*.sln", "*.csproj", ".git")
     end
-    -- fallback (optional)
     return util.find_git_ancestor or vim.loop.cwd()
 end
 

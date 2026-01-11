@@ -28,6 +28,8 @@ function KM.setup()
     vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>", { noremap = true, silent = true }) -- search words in files
     vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>", { noremap = true, silent = true })   -- open buffer list
     vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>", { noremap = true, silent = true }) -- help pages
+    vim.keymap.set("n", "<leader>fz", ":Telescope current_buffer_fuzzy_find<CR>", { silent = true })
+
     -- Comment Annotations
     vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
     vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
@@ -42,7 +44,6 @@ function KM.setup()
     vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to above split" })
     vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
 
-    -- Terminal split
     vim.keymap.set("n", "<leader>ch", ":split | terminal<CR>", { desc = "Horizontal Terminal" }) -- Horizontal terminal
     vim.keymap.set("n", "<leader>cv", ":vsplit | terminal<CR>", { desc = "Vertical Terminal" })  -- Vertical terminal
     vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })                 -- Exit terminal mode easily
@@ -57,13 +58,12 @@ function KM.setup()
     vim.keymap.set("n", "<leader>md", ":MarkdownPreview<CR>", { silent = true, desc = "Running current file..." })
 
     -- Bookmarks
-    vim.keymap.set("n", "mm", "<Cmd>BookmarksMarkToggle<CR>", { desc = "Toggle Bookmark" })
-    vim.keymap.set("n", "ml", "<Cmd>BookmarksList<CR>", { desc = "List Bookmarks" })
+    vim.keymap.set("n", "ml", "<Cmd>BookmarksListAll<CR>", { desc = "List Bookmarks" })
 
     -- Toggle Diagnostic Text Display
     vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 
-    -- Toggle Relatie number
+    -- Toggle Relative number
     vim.keymap.set("n", "<leader>rn", function()
         vim.opt.relativenumber = not vim.opt.relativenumber:get()
     end, { desc = "Toggle Relative Numbers" })

@@ -20,7 +20,8 @@ return {
                     "ts_ls",
                     "jdtls",
                     "rust_analyzer",
-                    "clangd"
+                    "clangd",
+                    "omnisharp"
                 },
                 -- Do not rely on automatic_enable (removed upstream)
                 automatic_installation = false,
@@ -34,6 +35,19 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
+
+            -- diagnostic signs
+            vim.diagnostic.config({
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = " ",
+                        [vim.diagnostic.severity.WARN]  = " ",
+                        [vim.diagnostic.severity.INFO]  = " ",
+                        [vim.diagnostic.severity.HINT]  = " ",
+                    },
+                },
+            })
+
             local util = require("lspconfig.util")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local on_attach = function(_, bufnr)
@@ -48,7 +62,8 @@ return {
                 "ts_ls",
                 "jdtls",
                 "rust_analyzer",
-                "clangd"
+                "clangd",
+                "omnisharp"
             }
 
             for _, server in ipairs(servers) do
@@ -56,6 +71,8 @@ return {
                     capabilities = capabilities,
                     on_attach = on_attach,
                 }
+
+                require("custom_lsp_configs").CustomConfig(server, opts)
 
                 -- Add root_dir detection if needed
                 local root = require("lsp_root_dir_detect").Detect_root(server, util)
@@ -69,4 +86,3 @@ return {
     -- 4. Your LSP completion engine setup
     require("completion_lsp"),
 }
-

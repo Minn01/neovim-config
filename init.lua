@@ -98,4 +98,10 @@ require("lazy").setup({
 
     -- show vim commands (show_key.lua)
     require("show_key"),
+
+    -- git signs (git_signs.lua)
+    require("git_signs"),
+
+    -- copilot autocompletetion (copilot_setup.lua) 
+    require("copilot_setup")
 })
