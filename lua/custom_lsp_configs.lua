@@ -13,8 +13,6 @@ function M.CustomConfig(server, opts)
                 },
             },
         }
-    elseif server == "omnisharp" then
-        opts.cmd = { "omnisharp" }
     end
 
     return opts

@@ -5,12 +5,9 @@ return {
         config = function()
             local alpha = require("alpha")
             local dashboard = require("alpha.themes.dashboard")
-
             -- header color
             dashboard.section.header.opts.hl = "AlphaHeader"
             vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#face4d" }) -- bright yellow
-
-
             dashboard.section.header.val = {
                 "                        _,     _   _    ,_",
                 "                    .o888P     Y8o8Y     Y888o.",
@@ -32,16 +29,13 @@ return {
                 " Yesterday is History, Tomorrow is a Mystery, but Today is a Gift",
                 "               That is why its called \"The Present\""
             }
-
-
             -- Buttons
             dashboard.section.buttons.val = {
-                dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
-                dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
-                dashboard.button("l", "  Lazy", ":Lazy<CR>"),
-                dashboard.button("c", "  Settings", ":e ~/.config/nvim/<CR>"),
+                dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
+                dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
+                dashboard.button("l", "  Lazy", ":Lazy<CR>"),
+                dashboard.button("c", "  Settings", ":cd ~/.config/nvim | e init.lua | NvimTreeOpen<CR>"),
             }
-
             -- Centering & layout tweaking
             dashboard.opts.layout = {
                 { type = "padding", val = 2 },
@@ -51,7 +45,6 @@ return {
                 { type = "padding", val = 1 },
                 dashboard.section.footer,
             }
-
             dashboard.opts.opts.noautocmd = true
             alpha.setup(dashboard.opts)
         end,

@@ -1,12 +1,3 @@
--- OPTIONS (vim_options.lua) --
-require("vim_options").setup()
-
--- KEYMAPS (keymaps.lua) --
-require("keymaps").setup()
-
--- CUSTOM COMMANDS ("custom_commands.lua")
-require("custom_commands").setup()
-
 -- PLUGINS --
 
 -- adding the path manually so that nvim knows where to look for lazy.nvim
@@ -29,79 +20,74 @@ vim.opt.rtp:prepend(lazypath)
 
 -- lazy.nvim setup (it's a plugins manager)
 require("lazy").setup({
+
     -- Auto close tag for markup languages
-    require("auto_tag"),
-
+    { import = "auto_tag" },
     -- Treesitter
-    require("treesitter_setup"),
-
+    { import = "treesitter_setup" },
     -- Status Bar --
-    require("lualine_setup"),
+    { import = "lualine_setup" },
 
     -- telescope --
     -- "nvim-telescope/telescope.nvim", -- Fuzzy finder
-    require("telescope_setup"),
+    { import = "telescope_setup" },
 
     -- color themes plugin (themes.lua) --
-    require("themes"),
-
+    { import = "themes" },
     -- themery_plugin (themery_setup.lua) --
-    require("themery_setup"),
-
+    { import = "themery_setup" },
     -- nvim_tree plugin (file_tree.lua) --
-    require("file_tree"),
-
+    { import = "file_tree" },
     -- bufferline tabs (bufferline.lua)
-    require("bufferline-config"),
-
+    { import = "bufferline-config" },
     -- lspconfigs via mason (lsp.lua)
-    require("lsp"),
-
+    { import = "lsp" },
     -- autopair bracket closing feature (autopair.txt)
-    require("autopair"),
-
+    { import = "autopair" },
     -- surround vim feature (vim_surround.lua)
-    require("vim_surround"),
-
+    { import = "vim_surround" },
     -- autoformattering (conform.lua)
-    require("conform_setup"),
-
+    { import = "conform_setup" },
     -- indentation guidelines (indent_guides.lua)
-    require("indent_guides"),
-
+    { import = "indent_guides" },
     -- code runner (code_runner.lua)
-    require("code_runner_setup"),
-
+    { import = "code_runner_setup" },
     -- mardown renderer (markdown_read.lua)
-    require("markdown_read"),
-
+    { import = "markdown_read" },
     -- bottom command line bar (noice_cmd.lua)
-    require("noice_cmd"),
-
+    { import = "noice_cmd" }, 
     -- live sever for web dev
-    require("live_sever"),
-
+    { import = "live_sever" },
     -- comment annotations
-    require("comment_annotations"),
-
+    { import = "comment_annotations" },
     -- bookmarks (bookmarks.lua)
-    require("bookmark"),
-
+    { import = "bookmark" },
     -- comment (comment_setup.lua)
-    require("comment_setup"),
-
+    { import = "comment_setup" },
     -- startup screen (startup_screen.lua)
-    require("startup_screen"),
-
+    { import = "startup_screen" },
     -- line column setup (number_line.lua)
-    require("number_line"),
-
+    { import = "number_line" },
     -- show vim commands (show_key.lua)
-    require("show_key"),
-
+    { import = "show_key" },
     -- git signs (git_signs.lua)
-    require("git_signs"),
-
-    -- copilot autocompletetion (copilot_setup.lua) 
-    require("copilot_setup")
+    { import = "git_signs" },
+    -- copilot autocompletetion (copilot_setup.lua)
+    { import = "copilot_setup" },
+    -- trouble plugin (trouble.lua)
+    { import = "folke_trouble" },
+    -- hop plugin (hop.lua)
+    { import = "hop_nvim" },
+    -- oil file manager for file system editing (oil.lua)
+    { import = "oil_setup" },
 })
+
+-- OPTIONS (vim_options.lua) --
+require("vim_options").setup()
+
+-- KEYMAPS (keymaps.lua) --
+require("keymaps").setup()
+
+-- CUSTOM COMMANDS ("custom_commands.lua")
+require("custom_commands").setup()
+

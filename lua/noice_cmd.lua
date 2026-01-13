@@ -7,14 +7,50 @@ return {
             "rcarriga/nvim-notify",
         },
         config = function()
+            -- 1. Setup nvim-notify
             require("notify").setup({
                 stages = "fade",
-                timeout = 1500,  -- timeout in milliseconds
+                timeout = 1500, -- timeout in milliseconds
                 top_down = false,
                 render = "default",
             })
-
+            -- 2. Setup Noice
             require("noice").setup({
+                routes = {
+                    {
+                        -- Catch "written" messages (with quotes in the filename)
+                        filter = {
+                            event = "msg_show",
+                            kind = "",
+                            find = "written",
+                        },
+                        view = "notify",
+                    },
+                    {
+                        -- Also catch plain write confirmations
+                        filter = {
+                            event = "msg_show",
+                            find = "^\".*\" %d+L, %d+B written$",
+                        },
+                        view = "notify",
+                    },
+                    {
+                        -- Catch search messages (hit BOTTOM, hit TOP)
+                        filter = {
+                            event = "msg_show",
+                            kind = "wmsg",
+                        },
+                        view = "notify",
+                    },
+                    {
+                        -- Catch search pattern messages
+                        filter = {
+                            event = "msg_show",
+                            find = "search hit",
+                        },
+                        view = "notify",
+                    },
+                },
                 cmdline = {
                     view = "cmdline_popup",
                 },
@@ -38,7 +74,7 @@ return {
                     },
                     notify = {
                         position = {
-                            row = "90%",  -- near the bottom
+                            row = "90%", -- near the bottom
                             col = "50%",
                         },
                         size = {
@@ -57,7 +93,6 @@ return {
                 },
                 messages = {
                     view = "notify",
-                    timeout = 700,
                 },
                 lsp = {
                     override = {
@@ -77,4 +112,3 @@ return {
         end,
     },
 }
-
