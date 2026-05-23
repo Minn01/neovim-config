@@ -1,34 +1,40 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                highlight = {
-                    enable = true,
-                },
-                ensure_installed = {
-                    "lua", "python", "javascript", "html", "css", "java", "markdown", "json", "bash"
-                }
-            })
+	{
+		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPost", "BufNewFile" },
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = {
+					"lua",
+					"python",
+					"javascript",
+					"typescript",
+					"tsx",
+					"html",
+					"css",
+					"json",
+					"bash",
+					"markdown",
+				},
 
-            require('nvim-ts-autotag').setup({
-                opts = {
-                    -- Defaults
-                    enable_close = true, -- Auto close tags
-                    enable_rename = true, -- Auto rename pairs of tags
-                    enable_close_on_slash = false -- Auto close on trailing </
-                },
-                -- Also override individual filetype configs, these take priority.
-                -- Empty by default, useful if one of the "opts" global settings
-                -- doesn't work well in a specific filetype
-                per_filetype = {
-                    ["html"] = {
-                        enable_close = false
-                    }
-                }
-            })
-        end
-    }
+				highlight = {
+					enable = true,
+				},
 
+				autotag = {
+					enable = true, -- ✅ REQUIRED
+					enable_close = true,
+					enable_rename = true,
+					enable_close_on_slash = false,
+				},
+			})
+		end,
+	},
+
+	{
+		"windwp/nvim-ts-autotag",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		event = "InsertEnter",
+	},
 }

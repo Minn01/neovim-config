@@ -1,4 +1,5 @@
 # Bookmark Mappings for Neovim
+
 ## The following default mappings are included:
 
     mx              Set mark x
@@ -11,7 +12,7 @@
     m[              Move to previous mark
     m:              Preview mark. This will prompt you for a specific mark to
                     preview; press <cr> to preview the next mark.
-                    
+
     m[0-9]          Add a bookmark from bookmark group[0-9].
     dm[0-9]         Delete all bookmarks from bookmark group[0-9].
     m}              Move to the next bookmark having the same type as the bookmark under

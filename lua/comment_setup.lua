@@ -1,8 +1,14 @@
 return {
-    {
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup()
-        end
-    }
+	{
+		"numToStr/Comment.nvim",
+
+		keys = {
+			{ "gc", mode = { "n", "v" } },
+			{ "gb", mode = { "n", "v" } },
+		},
+
+		config = function()
+			require("Comment").setup()
+		end,
+	},
 }
