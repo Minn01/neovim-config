@@ -25,15 +25,15 @@ end
 
 -- Graceful LSP shutdown on quit
 local function clean_quit()
-    -- Use get_clients() instead of get_active_clients()
-    local clients = vim.lsp.get_clients()
-    for _, client in ipairs(clients) do
-        client.stop()
-    end
- 
-    vim.defer_fn(function()
-        vim.cmd("qa!")
-    end, 100)
+	-- Use get_clients() instead of get_active_clients()
+	local clients = vim.lsp.get_clients()
+	for _, client in ipairs(clients) do
+		client.stop()
+	end
+
+	vim.defer_fn(function()
+		vim.cmd("qa!")
+	end, 100)
 end
 
 function KM.setup()
@@ -51,7 +51,7 @@ function KM.setup()
 
 	-- custom clean quit function to gracefully shutdown LSPs
 	vim.keymap.set("n", "<leader>q", clean_quit, { desc = "Clean Quit this session" })
-	vim.keymap.set("n", "<leader>iq", ':q<CR>', { desc = "Soft Quit this session" })
+	vim.keymap.set("n", "<leader>iq", ":q<CR>", { desc = "Soft Quit this session" })
 	vim.keymap.set("n", "<leader>!q", clean_quit, { desc = "Force Clean Quit" })
 
 	-- Buffer Tabs (Top of screen)

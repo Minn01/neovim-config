@@ -44,6 +44,7 @@ return {
 					"jdtls",
 					"rust_analyzer",
 					"clangd",
+					"gopls",
 				}
 
 				for _, server in ipairs(servers) do
@@ -111,6 +112,7 @@ return {
 					"jdtls",
 					"rust_analyzer",
 					"clangd",
+					"gopls",
 				}
 
 				for _, server in ipairs(servers) do
