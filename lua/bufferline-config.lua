@@ -11,19 +11,17 @@ return {
 					diagnostics = "nvim_lsp", -- show LSP errors/warnings
 					offsets = {
 						{
-							filetype = "NvimTree",
+							filetype = "snacks_layout_box",
 							text = "File Explorer",
 							separator = true,
 							highlight = "Directory",
 							text_align = "left",
 						},
 					},
-					options = {
-						hover = {
-							enabled = true,
-							delay = 200,
-							reveal = { "close" },
-						},
+					hover = {
+						enabled = true,
+						delay = 200,
+						reveal = { "close" },
 					},
 					separator_style = "slant",
 					show_buffer_close_icons = true,

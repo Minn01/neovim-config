@@ -1,11 +1,27 @@
 return {
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("todo-comments").setup({
-                {
-                    signs = true,      -- show icons in the signs column
+	{
+		"folke/todo-comments.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		dependencies = { "nvim-lua/plenary.nvim" },
+		keys = {
+			{
+				"]t",
+				function()
+					require("todo-comments").jump_next()
+				end,
+				desc = "Next todo comment",
+			},
+			{
+				"[t",
+				function()
+					require("todo-comments").jump_prev()
+				end,
+				desc = "Previous todo comment",
+			},
+		},
+		config = function()
+			require("todo-comments").setup({
+					signs = true,      -- show icons in the signs column
                     sign_priority = 8, -- sign priority
                     -- keywords recognized as todo comments
                     keywords = {
@@ -67,9 +83,7 @@ return {
                         pattern = [[\b(KEYWORDS):]], -- ripgrep regex
                         -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
                     },
-                }
-
-            })
+			})
         end
     }
 }

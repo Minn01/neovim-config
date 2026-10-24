@@ -1,6 +1,7 @@
 return {
-    {
-        "chentoast/marks.nvim",
+	{
+		"chentoast/marks.nvim",
+		event = { "BufReadPost", "BufNewFile" },
         config = function()
             require("marks").setup()
         end

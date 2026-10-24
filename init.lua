@@ -1,5 +1,8 @@
 vim.loader.enable()
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- PLUGINS --
 
 -- adding the path manually so that nvim knows where to look for lazy.nvim
@@ -22,23 +25,18 @@ vim.opt.rtp:prepend(lazypath)
 
 -- lazy.nvim setup (it's a plugins manager)
 require("lazy").setup({
-	-- Auto close tag for markup languages
-    { import = "auto_tag" },
 	-- Treesitter
 	{ import = "treesitter_setup" },
 	-- Status Bar --
 	{ import = "lualine_setup" },
 
-	-- telescope --
-	-- "nvim-telescope/telescope.nvim", -- Fuzzy finder
-	{ import = "telescope_setup" },
+	-- Snacks picker and dashboard
+	{ import = "snacks_setup" },
 
 	-- color themes plugin (themes.lua) --
 	{ import = "themes" },
 	-- themery_plugin (themery_setup.lua) --
 	{ import = "themery_setup" },
-	-- nvim_tree plugin (file_tree.lua) --
-	{ import = "file_tree" },
 	-- bufferline tabs (bufferline.lua)
 	{ import = "bufferline-config" },
 	-- lspconfigs via mason (lsp.lua)
@@ -49,12 +47,12 @@ require("lazy").setup({
 	{ import = "vim_surround" },
 	-- autoformattering (conform.lua)
 	{ import = "conform_setup" },
-	-- indentation guidelines (indent_guides.lua)
-	{ import = "indent_guides" },
 	-- code runner (code_runner.lua)
 	{ import = "code_runner_setup" },
 	-- mardown renderer (markdown_read.lua)
 	{ import = "markdown_read" },
+	-- render Markdown inside Neovim buffers, including the Codex transcript
+	{ import = "render_markdown" },
 	-- bottom command line bar (noice_cmd.lua)
 	{ import = "noice_cmd" },
 	-- live sever for web dev
@@ -65,10 +63,6 @@ require("lazy").setup({
 	{ import = "bookmark" },
 	-- comment (comment_setup.lua)
 	{ import = "comment_setup" },
-	-- startup screen (startup_screen.lua)
-	{ import = "startup_screen" },
-	-- line column setup (number_line.lua)
-	{ import = "number_line" },
 	-- show vim commands (show_key.lua)
 	{ import = "show_key" },
 	-- git signs (git_signs.lua)
@@ -81,6 +75,8 @@ require("lazy").setup({
 	{ import = "hop_nvim" },
 	-- oil file manager for file system editing (oil.lua)
 	{ import = "oil_setup" },
+	-- Codex integration (kept separate from the plugin's own `codex` module)
+	{ import = "codex_setup" },
 })
 
 -- default loaded colorscheme

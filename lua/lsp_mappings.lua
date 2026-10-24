@@ -8,15 +8,15 @@ function M.lsp_keymaps(bufnr)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+	vim.keymap.set('n', 'grr', vim.lsp.buf.references, opts)
 
     -- Info & docs
     vim.keymap.set('n', 'gk', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gkb', vim.lsp.buf.signature_help, opts)
 
     -- Actions
-    vim.keymap.set('n', 'gr', vim.lsp.buf.rename, opts)
-    vim.keymap.set('n', 'gc', vim.lsp.buf.code_action, opts)
+	vim.keymap.set('n', 'grn', vim.lsp.buf.rename, opts)
+	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
 
     -- Diagnostics
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)

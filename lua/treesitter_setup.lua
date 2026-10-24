@@ -16,18 +16,13 @@ return {
 					"json",
 					"bash",
 					"markdown",
+					"markdown_inline",
 				},
 
 				highlight = {
 					enable = true,
 				},
 
-				autotag = {
-					enable = true, -- ✅ REQUIRED
-					enable_close = true,
-					enable_rename = true,
-					enable_close_on_slash = false,
-				},
 			})
 		end,
 	},
@@ -36,5 +31,6 @@ return {
 		"windwp/nvim-ts-autotag",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		event = "InsertEnter",
+		opts = {},
 	},
 }

@@ -1,28 +1,5 @@
 local KM = {}
 
--- Find project root once so we don't repeat the logic twice
-local function find_git_root()
-	local current_file = vim.fn.expand("%:p:h")
-	local current_dir = current_file ~= "" and current_file or vim.fn.getcwd()
-
-	while current_dir ~= "/" do
-		if vim.fn.isdirectory(current_dir .. "/.git") == 1 then
-			return current_dir
-		end
-		current_dir = vim.fn.fnamemodify(current_dir, ":h")
-	end
-	return vim.fn.getcwd()
-end
-
--- TERMINAL MANAGEMENT (Now using the helper function above)
-local function open_term(direction)
-	local root = find_git_root()
-	vim.cmd(direction == "h" and "split" or "vsplit")
-	vim.cmd("terminal")
-	-- Use vim.api to change dir for the terminal specifically
-	vim.api.nvim_chan_send(vim.bo.channel, "cd " .. root .. " && clear\n")
-end
-
 -- Graceful LSP shutdown on quit
 local function clean_quit()
 	-- Use get_clients() instead of get_active_clients()
@@ -37,11 +14,7 @@ local function clean_quit()
 end
 
 function KM.setup()
-	vim.g.mapleader = " " -- Ensure Space is the leader
-
-	-- We define two sets of options:
-	local opts = { noremap = true, silent = true } -- For quiet actions
-	local loud = { noremap = true, silent = false } -- For actions that need notifications (Save, etc.)
+	local opts = { noremap = true, silent = true }
 
 	-- =========================================================================
 	-- FILE & BUFFER MANAGEMENT
@@ -62,7 +35,6 @@ function KM.setup()
 	vim.keymap.set("n", "<leader>x", ":bd!<CR>", opts)
 
 	-- File Explorer & Filesystem
-	vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 	vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory (Oil)" })
 
 	-- =========================================================================
@@ -80,19 +52,6 @@ function KM.setup()
 	vim.keymap.set({ "n", "x", "o" }, "<leader>s", ":HopWord<CR>", { desc = "Hop to Word" })
 	vim.keymap.set({ "n", "x", "o" }, "<leader>S", ":HopLine<CR>", { desc = "Hop to Line" })
 	vim.keymap.set({ "n", "x", "o" }, "<leader>/", ":HopPattern<CR>", { desc = "Hop to Pattern" })
-
-	-- =========================================================================
-	-- SEARCH (Telescope)
-	-- =========================================================================
-	-- Changed these to loud so you see search status messages in Noice/Notify
-	vim.keymap.set("n", "<leader>ff", function()
-		require("telescope.builtin").find_files({ cwd = find_git_root() })
-	end, { desc = "Find Files in Project Root" })
-	vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>", loud)
-	vim.keymap.set("n", "<leader>fa", ":Telescope live_grep no_ignore=true<CR>", loud)
-	vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>", loud)
-	vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>", loud)
-	vim.keymap.set("n", "<leader>fz", ":Telescope current_buffer_fuzzy_find<CR>", loud)
 
 	-- =========================================================================
 	-- LSP & CODING
@@ -113,14 +72,6 @@ function KM.setup()
 	)
 	vim.keymap.set("n", "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "File Symbols" })
 
-	-- Comment Annotations
-	vim.keymap.set("n", "]t", function()
-		require("todo-comments").jump_next()
-	end, { desc = "Next todo comment" })
-	vim.keymap.set("n", "[t", function()
-		require("todo-comments").jump_prev()
-	end, { desc = "Previous todo comment" })
-
 	-- =========================================================================
 	-- MISC TOOLS & UI
 	-- =========================================================================
@@ -130,9 +81,6 @@ function KM.setup()
 
 	vim.keymap.set("n", "<leader>th", ":Themery<CR>", opts)
 
-	-- Quick fix for when directory gets messed up
-	vim.keymap.set("n", "<leader>cd", ":Cd<CR>", { desc = "Fix Working Directory" })
-
 	-- Format and Run should be LOUD so you know they actually triggered
 	vim.keymap.set("n", "<leader>rr", ":RunCode<CR>", { silent = false, desc = "Run Project" })
 	vim.keymap.set("n", "<leader>fm", ":Fm<CR>", { silent = false, desc = "Format Code" })
@@ -141,14 +89,6 @@ function KM.setup()
 
 	-- Bookmarks
 	vim.keymap.set("n", "ml", "<Cmd>BookmarksListAll<CR>", { desc = "List Bookmarks" })
-
-	-- Terminals - always open at project root
-	vim.keymap.set("n", "<leader>ch", function()
-		open_term("h")
-	end, { desc = "Horizontal Term" })
-	vim.keymap.set("n", "<leader>cv", function()
-		open_term("v")
-	end, { desc = "Vertical Term" })
 
 	vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 end

@@ -1,6 +1,7 @@
 return {
-    {
-        "CRAG666/code_runner.nvim",
+	{
+		"CRAG666/code_runner.nvim",
+		cmd = { "RunCode", "RunFile", "RunProject", "RunClose" },
         config = function()
             require("code_runner").setup({
                 filetype = {
