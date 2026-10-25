@@ -44,9 +44,11 @@ return {
 		},
 		statuscolumn = { enabled = true },
 		terminal = {},
+		lazygit = {},
 	},
 	keys = {
 		{ "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+		{ "<leader>gg", function() Snacks.lazygit({ cwd = project_root() }) end, desc = "Open LazyGit" },
 		{
 			"<leader>ch",
 			function()
@@ -92,6 +94,5 @@ return {
 		},
 		{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{ "<leader>fh", function() Snacks.picker.help() end, desc = "Help Pages" },
-		{ "<leader>fz", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 	},
 }

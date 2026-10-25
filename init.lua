@@ -32,6 +32,8 @@ require("lazy").setup({
 
 	-- Snacks picker and dashboard
 	{ import = "snacks_setup" },
+	-- Telescope search in the current buffer
+	{ import = "telescope_setup" },
 
 	-- color themes plugin (themes.lua) --
 	{ import = "themes" },
