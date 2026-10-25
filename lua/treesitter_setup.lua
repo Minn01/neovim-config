@@ -1,28 +1,30 @@
+local languages = {
+	"lua",
+	"python",
+	"javascript",
+	"typescript",
+	"tsx",
+	"html",
+	"css",
+	"json",
+	"bash",
+	"markdown",
+	"markdown_inline",
+}
+
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPost", "BufNewFile" },
+		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"lua",
-					"python",
-					"javascript",
-					"typescript",
-					"tsx",
-					"html",
-					"css",
-					"json",
-					"bash",
-					"markdown",
-					"markdown_inline",
-				},
+			require("nvim-treesitter").install(languages)
 
-				highlight = {
-					enable = true,
-				},
-
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("treesitter_highlighting", { clear = true }),
+				callback = function()
+					pcall(vim.treesitter.start)
+				end,
 			})
 		end,
 	},

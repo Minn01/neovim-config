@@ -37,7 +37,11 @@ return {
 				},
 			},
 		},
-		dashboard = { enabled = true },
+		dashboard = {
+			enabled = true,
+			width = 124,
+			sections = { require("dashboard_layout") },
+		},
 		statuscolumn = { enabled = true },
 		terminal = {},
 	},

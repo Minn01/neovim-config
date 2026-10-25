@@ -89,8 +89,6 @@ function KM.setup()
 
 	-- Bookmarks
 	vim.keymap.set("n", "ml", "<Cmd>BookmarksListAll<CR>", { desc = "List Bookmarks" })
-
-	vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 end
 
 return KM
