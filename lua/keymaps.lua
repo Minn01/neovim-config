@@ -16,6 +16,8 @@ end
 function KM.setup()
 	local opts = { noremap = true, silent = true }
 
+	vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
 	-- =========================================================================
 	-- FILE & BUFFER MANAGEMENT
 	-- =========================================================================

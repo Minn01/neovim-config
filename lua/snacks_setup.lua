@@ -43,7 +43,13 @@ return {
 			sections = { require("dashboard_layout") },
 		},
 		statuscolumn = { enabled = true },
-		terminal = {},
+		terminal = {
+			win = {
+				keys = {
+					term_normal = { "<Esc>", [[<C-\><C-n>]], mode = "t", desc = "Exit terminal mode" },
+				},
+			},
+		},
 		lazygit = {},
 	},
 	keys = {
