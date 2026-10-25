@@ -50,7 +50,9 @@ return {
 				},
 			},
 		},
-		lazygit = {},
+		lazygit = {
+			win = { keys = { term_normal = false } },
+		},
 	},
 	keys = {
 		{ "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },

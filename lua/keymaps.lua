@@ -16,7 +16,17 @@ end
 function KM.setup()
 	local opts = { noremap = true, silent = true }
 
-	vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+	vim.api.nvim_create_autocmd("TermOpen", {
+		callback = function(args)
+			if vim.b[args.buf].snacks_terminal or vim.b[args.buf].codex_nvim_terminal then
+				return
+			end
+			vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], {
+				buffer = args.buf,
+				desc = "Exit terminal mode",
+			})
+		end,
+	})
 
 	-- =========================================================================
 	-- FILE & BUFFER MANAGEMENT
