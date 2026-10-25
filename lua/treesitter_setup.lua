@@ -10,6 +10,7 @@ local languages = {
 	"bash",
 	"markdown",
 	"markdown_inline",
+	"regex",
 }
 
 return {

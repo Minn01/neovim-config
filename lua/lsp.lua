@@ -14,7 +14,10 @@ return {
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
 			require("mason-lspconfig").setup({
-				automatic_installation = true,
+				ensure_installed = {
+					"html", "cssls", "lua_ls", "pyright", "ts_ls",
+					"jdtls", "rust_analyzer", "gopls",
+				},
 			})
 		end,
 	},

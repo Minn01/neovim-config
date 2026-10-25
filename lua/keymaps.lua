@@ -5,7 +5,7 @@ local function clean_quit()
 	-- Use get_clients() instead of get_active_clients()
 	local clients = vim.lsp.get_clients()
 	for _, client in ipairs(clients) do
-		client.stop()
+		client:stop()
 	end
 
 	vim.defer_fn(function()

@@ -8,7 +8,7 @@ return {
 			"hrsh7th/cmp-buffer", -- buffer words
 			"hrsh7th/cmp-path", -- file system paths
 			"saadparwaiz1/cmp_luasnip", -- snippets
-			"L3MON4D3/LuaSnip", -- snippet engine
+			{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" }, -- snippet engine
 		},
 		config = function()
 			local cmp = require("cmp")

@@ -10,6 +10,12 @@ local function iterm_set_profile(profile)
 end
 
 function VOpt.setup()
+    local java_home = "/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
+    if not vim.env.JAVA_HOME and vim.fn.executable(java_home .. "/bin/java") == 1 then
+        vim.env.JAVA_HOME = java_home
+        vim.env.PATH = java_home .. "/bin:" .. vim.env.PATH
+    end
+
     vim.opt.number = true
     vim.opt.relativenumber = true
     vim.opt.tabstop = 4
